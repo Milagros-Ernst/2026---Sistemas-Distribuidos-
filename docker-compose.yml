@@ -1,5 +1,12 @@
 services:
   app:
-    image: nginx:alpine
+    build: .
+    container_name: go_app_container
     ports:
-      - "8080:80"
+      - "8080:8080"
+    volumes:
+      - .:/app  # ESTO ES CLAVE: Sincroniza tu carpeta local con el contenedor
+    environment:
+      - APP_ENV=dev
+    stdin_open: true # Permite interactuar con la consola si es necesario
+    tty: true
